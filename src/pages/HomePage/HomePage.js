@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import Loading from 'components/Loading';
+// import { useLocation } from 'react-router-dom';
+import MovieCard from 'components/MovieCard';
 import Toastify from 'components/Toastify';
-import ReviewsItem from 'components/ReviewsItem';
 import Button from 'components/Button';
-import { getReviews } from 'apiServices/movieAPI';
-import { scrollBottom, scrollPosition } from 'helpers/scrollBottom';
+import Loading from 'components/Loading';
+import { getTrending } from 'apiServices/movieAPI';
 import scrollTop from 'helpers/scrollTop';
-// import styles from './Reviews.module.css';
+import { scrollBottom, scrollPosition } from 'helpers/scrollBottom';
+// import styles from './HomePage.module.css';
 
 const Status = {
   PENDING: 'pending',
@@ -15,25 +15,30 @@ const Status = {
   NOTFOUND: 'notFound',
 };
 
-const Reviews = () => {
-  const [reviews, setReviews] = useState([]);
+const HomePage = () => {
+  // const location = useLocation();
+  // const currentPage = new URLSearchParams(location.search).get('page') ?? 1;
+
+  const [movieTrending, setMovieTrending] = useState([]);
   const [status, setStatus] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const { movieId } = useParams();
 
   useEffect(() => {
-    async function fetchReviews() {
+    async function fetchMovie() {
       const { PENDING, RESOLVED, NOTFOUND } = Status;
       setStatus(PENDING);
-      await getReviews(movieId, page)
+      await getTrending(page)
         .then(data => {
           if (!data.results.length) {
             setStatus(NOTFOUND);
-            Toastify('warning', "We don't have any reviews for this movie!");
+            Toastify('warning', 'Sorry, there are no trending movies!');
           } else {
             setTotalPages(data.total_pages);
-            setReviews(reviews => [...reviews, ...data.results]);
+            setMovieTrending(movieTrending => [
+              ...movieTrending,
+              ...data.results,
+            ]);
             setStatus(RESOLVED);
           }
         })
@@ -43,8 +48,8 @@ const Reviews = () => {
         });
       if (page >= 2) scrollBottom();
     }
-    fetchReviews();
-  }, [movieId, page]);
+    fetchMovie();
+  }, [page]);
 
   const getLoadMore = () => {
     scrollPosition();
@@ -54,28 +59,28 @@ const Reviews = () => {
   return (
     <>
       {status === 'pending' && <Loading />}
-      {status === 'notFound' && (
-        <p>We don't have any reviews for this movie!</p>
-      )}
       {status === 'resolved' && (
-        <ul>
-          {reviews.map(element => (
-            <ReviewsItem key={element.id} element={element} />
-          ))}
-        </ul>
+        <div>
+          <h1>Trending today</h1>
+          <ul style={{ display: 'flex', flexWrap: 'wrap' }}>
+            {movieTrending.map(element => (
+              <MovieCard key={element.id} element={element} url="movies" />
+            ))}
+          </ul>
+        </div>
       )}
-      {reviews.length > 15 && page < totalPages && (
+      {movieTrending.length > 15 && page < totalPages && (
         <Button
           name={'Load more'}
           nameClass="load-button"
           onClick={getLoadMore}
         />
       )}
-      {reviews.length > 10 && (
+      {movieTrending.length > 15 && (
         <Button name={'To UP'} nameClass="up-button" onClick={scrollTop} />
       )}
     </>
   );
 };
 
-export default Reviews;
+export default HomePage;

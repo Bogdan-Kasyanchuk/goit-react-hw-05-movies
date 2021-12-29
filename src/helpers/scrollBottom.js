@@ -1,9 +1,12 @@
-const scrollBottom = () => {
-  let offsetHeight = document.documentElement.offsetHeight - 965;
-  window.scrollTo({
-    top: offsetHeight,
-    behavior: 'smooth',
-  });
+let getScrollPosition = null;
+
+export const scrollPosition = () => {
+  getScrollPosition = window.pageYOffset;
+  return getScrollPosition;
 };
 
-export default scrollBottom;
+export const scrollBottom = () => {
+  window.scrollTo({
+    top: getScrollPosition,
+  });
+};

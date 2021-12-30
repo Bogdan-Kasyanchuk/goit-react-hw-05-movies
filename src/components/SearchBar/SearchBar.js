@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { ImSearch } from 'react-icons/im';
 import Toastify from 'components/Toastify';
-// import styles from './SearchBar.module.css';
+import styles from './SearchBar.module.css';
 
 const SearchBar = ({ onSubmit }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,19 +22,22 @@ const SearchBar = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <button type="submit">
-        <ImSearch style={{ width: 22, height: 22 }} />
-      </button>
-      <input
-        type="text"
-        autoComplete="off"
-        autoFocus
-        placeholder="Search movies"
-        value={searchQuery}
-        onChange={handleChange}
-      />
-    </form>
+    <div className={styles['search-wrapper']}>
+      <form className={styles['search-form']} onSubmit={handleSubmit}>
+        <button className={styles['search-form-button']} type="submit">
+          <ImSearch style={{ width: 24, height: 24 }} />
+        </button>
+        <input
+          className={styles['search-form-input']}
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search movies"
+          value={searchQuery}
+          onChange={handleChange}
+        />
+      </form>
+    </div>
   );
 };
 

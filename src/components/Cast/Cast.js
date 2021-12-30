@@ -6,7 +6,7 @@ import CastItem from 'components/CastItem';
 import Button from 'components/Button';
 import { getCredits } from 'apiServices/movieAPI';
 import scrollTop from 'helpers/scrollTop';
-// import styles from './Cast.module.css';
+import styles from './Cast.module.css';
 
 const Status = {
   PENDING: 'pending',
@@ -42,10 +42,12 @@ const Cast = () => {
     <>
       {status === 'pending' && <Loading />}
       {status === 'notFound' && (
-        <p>We don't have any reviews for this movie!</p>
+        <p className={styles['cast-title']}>
+          We don't have any reviews for this movie!
+        </p>
       )}
       {status === 'resolved' && (
-        <ul>
+        <ul className={styles['cast-list']}>
           {cast.map(element => (
             <CastItem key={element.id} element={element} />
           ))}

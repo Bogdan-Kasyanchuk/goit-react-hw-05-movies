@@ -1,6 +1,9 @@
-.image-finder {
+.movie-wrapper {
+  padding: 20px 0;
+}
+
+.movie-list {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 18px;
 }

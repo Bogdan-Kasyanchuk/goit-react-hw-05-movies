@@ -9,7 +9,7 @@ import Button from 'components/Button';
 import { getMovie } from 'apiServices/movieAPI';
 import scrollTop from 'helpers/scrollTop';
 import { scrollBottom, scrollPosition } from 'helpers/scrollBottom';
-// import styles from './MoviesPage.module.css';
+import styles from './MoviesPage.module.css';
 
 const Status = {
   PENDING: 'pending',
@@ -66,11 +66,11 @@ const MoviesPage = () => {
   return (
     <>
       {status === 'pending' && <Loading />}
-      <div>
+      <div className={styles['movie-wrapper']}>
         <SearchBar onSubmit={handleFormSubmit} />
         {status === 'notFound' && <NotFound />}
         {status === 'resolved' && (
-          <ul style={{ display: 'flex', flexWrap: 'wrap' }}>
+          <ul className={styles['movie-list']}>
             {movie.map(element => (
               <MovieCard key={element.id} element={element} url={url} />
             ))}

@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import PhotoNotAvailable from '../../images/photo-not-available.jpg';
-// import styles from './CastItem.module.css';
+import styles from './CastItem.module.css';
 
 const CastItem = ({ element }) => {
   return (
-    <li>
+    <li className={styles['cast-item']}>
       <img
-        style={{ maxWidth: '200px' }}
+        className={styles['cast-img']}
         src={
           element.profile_path
             ? `https://image.tmdb.org/t/p/w500${element.profile_path}`
@@ -14,9 +14,12 @@ const CastItem = ({ element }) => {
         }
         alt={element.name ? element.name : element.original_name}
       />
-      <p> {element.name ? element.name : element.original_name}</p>
-      <p> {element.character}</p>
-      <p> {element.popularity}</p>
+      <p className={styles['cast-title']}>
+        {' '}
+        {element.name ? element.name : element.original_name}
+      </p>
+      <p className={styles['cast-text']}> {element.character}</p>
+      <p className={styles['cast-text']}> {element.popularity}</p>
     </li>
   );
 };

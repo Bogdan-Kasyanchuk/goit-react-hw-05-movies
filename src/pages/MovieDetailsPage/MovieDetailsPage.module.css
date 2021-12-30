@@ -1,6 +1,76 @@
-.image-finder {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px;
+.movie-details-container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+}
+
+.movie-details-wrapper-all {
+  padding-top: 20px;
+}
+
+.movie-details-wrapper {
+  display: flex;
+}
+
+.movie-details-wrapper-img {
+  margin-right: 50px;
+  min-width: 400px;
+}
+
+.movie-details-title {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.movie-details-list {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.movie-details-item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.movie-details-overview {
+  margin-bottom: 20px;
+}
+
+.movie-details-overview-title {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.movie-details-overview-text {
+  font-size: 20px;
+}
+
+.movie-details-genres {
+  margin-bottom: 20px;
+}
+
+.movie-details-genres-title {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.movie-details-genres-list {
+  display: flex;
+  font-size: 20px;
+}
+
+.movie-details-genres-item:not(:last-child) {
+  margin-right: 25px;
+}
+
+.movie-details-countries-title {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.movie-details-countries-list {
+  font-size: 20px;
+}
+
+.movie-details-countries-item:not(:last-child) {
+  margin-bottom: 10px;
 }

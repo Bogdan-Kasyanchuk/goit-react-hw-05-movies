@@ -1,6 +1,19 @@
-.image-finder {
+.home-wrapper {
+  padding: 20px 0;
+}
+
+.home-title {
+  padding-bottom: 20px;
+  font-size: 30px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.home-list {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 18px;
 }

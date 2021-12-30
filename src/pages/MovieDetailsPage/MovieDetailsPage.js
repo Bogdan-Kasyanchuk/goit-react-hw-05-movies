@@ -13,7 +13,7 @@ import Toastify from 'components/Toastify';
 import PosterNotAvailable from '../../images/poster-not-available.jpg';
 import Button from 'components/Button';
 import { getMovieInform } from 'apiServices/movieAPI';
-// import styles from './MovieDetailsPage.module.css';
+import styles from './MovieDetailsPage.module.css';
 
 const Cast = lazy(() =>
   import('components/Cast' /* webpackChunkName: "Cast" */),
@@ -62,14 +62,15 @@ const MovieDetailsPage = () => {
   return (
     <>
       {status === 'pending' && <Loading />}
-      <div>
-        <Button name={'Back'} nameClass="back-button" onClick={onGoBack} />
+      <div className={styles['movie-details-container']}>
+        <Button name={'Go Back'} nameClass="back-button" onClick={onGoBack} />
         {status === 'notFound' && <NotFound />}
         {status === 'resolved' && (
-          <div>
-            <div style={{ display: 'flex' }}>
-              <div style={{ maxWidth: '200px', marginRight: '20px' }}>
+          <div className={styles['movie-details-wrapper-all']}>
+            <div className={styles['movie-details-wrapper']}>
+              <div className={styles['movie-details-wrapper-img']}>
                 <img
+                  className={styles['movie-details-img']}
                   src={
                     movieInform.poster_path
                       ? `https://image.tmdb.org/t/p/w500${movieInform.poster_path}`
@@ -82,70 +83,71 @@ const MovieDetailsPage = () => {
                   }
                 />
               </div>
-              <div>
-                <h2>
+              <div className={styles['movie-details-description']}>
+                <h2 className={styles['movie-details-title']}>
                   {movieInform.title
                     ? movieInform.title
                     : movieInform.original_title}{' '}
                   ({movieInform.release_date.slice(0, 4)})
                 </h2>
-                <ul>
-                  <li>
+                <ul className={styles['movie-details-list']}>
+                  <li className={styles['movie-details-item']}>
                     Vote count: <span>{movieInform.vote_count}</span>
                   </li>
-                  <li>
+                  <li className={styles['movie-details-item']}>
                     Vote average: <span>{movieInform.vote_average}</span>
                   </li>
                 </ul>
-                <div>
-                  <h3>Overview:</h3>
-                  <p>{movieInform.overview}</p>
+                <div className={styles['movie-details-overview']}>
+                  <h3 className={styles['movie-details-overview-title']}>
+                    Overview:
+                  </h3>
+                  <p className={styles['movie-details-overview-text']}>
+                    {movieInform.overview}
+                  </p>
                 </div>
 
-                <div>
-                  <h3>Genres:</h3>
-                  <ul>
+                <div className={styles['movie-details-genres']}>
+                  <h3 className={styles['movie-details-genres-title']}>
+                    Genres:
+                  </h3>
+                  <ul className={styles['movie-details-genres-list']}>
                     {movieInform.genres.map(element => (
-                      <li key={element.id}>{element.name}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3>Production companies:</h3>
-                  <ul>
-                    {movieInform.production_companies.map(element => (
-                      <li key={element.id}>
-                        <img
-                          style={{ maxWidth: '200px' }}
-                          src={
-                            element.logo_path
-                              ? `https://image.tmdb.org/t/p/w500${element.logo_path}`
-                              : PosterNotAvailable
-                          }
-                          alt={element.name}
-                        />
+                      <li
+                        className={styles['movie-details-genres-item']}
+                        key={element.id}
+                      >
                         {element.name}
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div>
-                  <h3>Production countries:</h3>
-                  <ul>
+                <div className={styles['movie-details-countries']}>
+                  <h3 className={styles['movie-details-countries-title']}>
+                    Production countries:
+                  </h3>
+                  <ul className={styles['movie-details-countries-list']}>
                     {movieInform.production_countries.map(element => (
-                      <li key={element.name}>{element.name}</li>
+                      <li
+                        className={styles['movie-details-countries-item']}
+                        key={element.name}
+                      >
+                        {element.name}
+                      </li>
                     ))}
                   </ul>
                 </div>
               </div>
             </div>
-            <div>
-              <h3>Additionsl information</h3>
-              <ul>
-                <li>
+            <div className={styles['add-inform-wrapper']}>
+              <h3 className={styles['add-inform-title']}>
+                Additionsl information
+              </h3>
+              <ul className={styles['add-inform-list']}>
+                <li className={styles['add-inform-item']}>
                   <NavLink to={`${url}/cast`}>Cast</NavLink>
                 </li>
-                <li>
+                <li className={styles['add-inform-item']}>
                   <NavLink to={`${url}/reviews`}> Reviews</NavLink>
                 </li>
               </ul>

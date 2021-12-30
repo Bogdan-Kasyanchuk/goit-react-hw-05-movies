@@ -7,7 +7,7 @@ import Loading from 'components/Loading';
 import { getTrending } from 'apiServices/movieAPI';
 import scrollTop from 'helpers/scrollTop';
 import { scrollBottom, scrollPosition } from 'helpers/scrollBottom';
-// import styles from './HomePage.module.css';
+import styles from './HomePage.module.css';
 
 const Status = {
   PENDING: 'pending',
@@ -60,9 +60,9 @@ const HomePage = () => {
     <>
       {status === 'pending' && <Loading />}
       {status === 'resolved' && (
-        <div>
-          <h1>Trending today</h1>
-          <ul style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div className={styles['home-wrapper']}>
+          <h1 className={styles['home-title']}>Trending today</h1>
+          <ul className={styles['home-list']}>
             {movieTrending.map(element => (
               <MovieCard key={element.id} element={element} url="movies" />
             ))}

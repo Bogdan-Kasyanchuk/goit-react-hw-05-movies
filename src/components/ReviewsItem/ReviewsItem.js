@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import PhotoNotAvailable from '../../images/photo-not-available.jpg';
-// import styles from './ReviewsItem.module.css';
+import styles from './ReviewsItem.module.css';
 
 const ReviewsItem = ({ element }) => {
   return (
-    <li>
+    <li className={styles['reviews-item']}>
       <img
-        style={{ maxWidth: '200px' }}
+        className={styles['reviews-img']}
         src={
           element.author_details.avatar_path
             ? `${element.author_details.avatar_path.slice(1)}`
@@ -14,8 +14,8 @@ const ReviewsItem = ({ element }) => {
         }
         alt={element.author}
       />
-      <p> {element.author}</p>
-      <p> {element.content}</p>
+      <p className={styles['reviews-title']}> {element.author}</p>
+      <p className={styles['reviews-text']}> {element.content}</p>
     </li>
   );
 };

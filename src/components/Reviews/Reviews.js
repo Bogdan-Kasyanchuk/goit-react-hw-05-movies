@@ -7,7 +7,7 @@ import Button from 'components/Button';
 import { getReviews } from 'apiServices/movieAPI';
 import { scrollBottom, scrollPosition } from 'helpers/scrollBottom';
 import scrollTop from 'helpers/scrollTop';
-// import styles from './Reviews.module.css';
+import styles from './Reviews.module.css';
 
 const Status = {
   PENDING: 'pending',
@@ -55,10 +55,12 @@ const Reviews = () => {
     <>
       {status === 'pending' && <Loading />}
       {status === 'notFound' && (
-        <p>We don't have any reviews for this movie!</p>
+        <p className={styles['reviews-title']}>
+          We don't have any reviews for this movie!
+        </p>
       )}
       {status === 'resolved' && (
-        <ul>
+        <ul className={styles['reviews-list']}>
           {reviews.map(element => (
             <ReviewsItem key={element.id} element={element} />
           ))}

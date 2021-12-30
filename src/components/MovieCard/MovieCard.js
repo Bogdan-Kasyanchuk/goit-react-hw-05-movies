@@ -1,22 +1,22 @@
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import PosterNotAvailable from '../../images/poster-not-available.jpg';
-// import styles from './MovieCard.module.css';
+import styles from './MovieCard.module.css';
 
 const MovieCard = ({ element, url }) => {
   const location = useLocation();
 
   return (
-    <li
-      style={{ maxWidth: '300px', marginBottom: '20px', marginRight: '20px' }}
-    >
+    <li className={styles['movie-item']}>
       <Link
+        className={styles['movie-link']}
         to={{
           pathname: `${url}/${element.id}`,
           state: { from: location },
         }}
       >
         <img
+          className={styles['movie-img']}
           src={
             element.poster_path
               ? `https://image.tmdb.org/t/p/w500${element.poster_path}`
@@ -28,12 +28,14 @@ const MovieCard = ({ element, url }) => {
               : element.name || element.original_name
           }
         />
-        <p>
-          {element.title || element.original_title
-            ? element.title || element.original_title
-            : element.name || element.original_name}
-        </p>
-        <p> {element.vote_average}</p>
+        <div className={styles['movie-description']}>
+          <p className={styles['movie-title']}>
+            {element.title || element.original_title
+              ? element.title || element.original_title
+              : element.name || element.original_name}
+          </p>
+          <p className={styles['movie-average']}> {element.vote_average}</p>
+        </div>
       </Link>
     </li>
   );

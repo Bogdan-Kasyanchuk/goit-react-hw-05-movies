@@ -53,7 +53,7 @@ const Cast = () => {
           ))}
         </ul>
       )}
-      {cast.length > 10 && (
+      {cast.length > 12 && (
         <Button name={'To UP'} nameClass="up-button" onClick={scrollTop} />
       )}
     </>

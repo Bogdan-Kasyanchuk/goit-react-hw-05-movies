@@ -66,7 +66,7 @@ const MovieDetailsPage = () => {
         <Button name={'Go Back'} nameClass="back-button" onClick={onGoBack} />
         {status === 'notFound' && <NotFound />}
         {status === 'resolved' && (
-          <div className={styles['movie-details-wrapper-all']}>
+          <>
             <div className={styles['movie-details-wrapper']}>
               <div className={styles['movie-details-wrapper-img']}>
                 <img
@@ -106,7 +106,6 @@ const MovieDetailsPage = () => {
                     {movieInform.overview}
                   </p>
                 </div>
-
                 <div className={styles['movie-details-genres']}>
                   <h3 className={styles['movie-details-genres-title']}>
                     Genres:
@@ -141,22 +140,34 @@ const MovieDetailsPage = () => {
             </div>
             <div className={styles['add-inform-wrapper']}>
               <h3 className={styles['add-inform-title']}>
-                Additionsl information
+                Additional information:
               </h3>
               <ul className={styles['add-inform-list']}>
                 <li className={styles['add-inform-item']}>
-                  <NavLink to={`${url}/cast`}>Cast</NavLink>
+                  <NavLink
+                    className={styles['add-inform-link']}
+                    activeClassName={styles['add-inform-link-active']}
+                    to={`${url}/cast`}
+                  >
+                    Cast
+                  </NavLink>
                 </li>
                 <li className={styles['add-inform-item']}>
-                  <NavLink to={`${url}/reviews`}> Reviews</NavLink>
+                  <NavLink
+                    className={styles['add-inform-link']}
+                    activeClassName={styles['add-inform-link-active']}
+                    to={`${url}/reviews`}
+                  >
+                    Reviews
+                  </NavLink>
                 </li>
               </ul>
-              <div>
-                <Route exact path={`${path}/cast`} component={Cast} />
-                <Route exact path={`${path}/reviews`} component={Reviews} />
-              </div>
             </div>
-          </div>
+            <div>
+              <Route exact path={`${path}/cast`} component={Cast} />
+              <Route exact path={`${path}/reviews`} component={Reviews} />
+            </div>
+          </>
         )}
       </div>
     </>

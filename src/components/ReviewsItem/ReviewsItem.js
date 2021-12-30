@@ -5,15 +5,17 @@ import styles from './ReviewsItem.module.css';
 const ReviewsItem = ({ element }) => {
   return (
     <li className={styles['reviews-item']}>
-      <img
-        className={styles['reviews-img']}
-        src={
-          element.author_details.avatar_path
-            ? `${element.author_details.avatar_path.slice(1)}`
-            : PhotoNotAvailable
-        }
-        alt={element.author}
-      />
+      <div className={styles['reviews-wrapper-img']}>
+        <img
+          className={styles['reviews-img']}
+          src={
+            element.author_details.avatar_path
+              ? `${element.author_details.avatar_path.slice(1)}`
+              : PhotoNotAvailable
+          }
+          alt={element.author}
+        />
+      </div>
       <p className={styles['reviews-title']}> {element.author}</p>
       <p className={styles['reviews-text']}> {element.content}</p>
     </li>

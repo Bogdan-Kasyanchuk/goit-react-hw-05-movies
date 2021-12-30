@@ -1,6 +1,28 @@
-.image-finder {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px;
+.reviews-item:not(:last-child) {
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #fff;
+}
+
+.reviews-wrapper-img {
+  float: left;
+  margin-right: 10px;
+  width: 100px;
+  height: 100%;
+}
+
+.reviews-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.reviews-title {
+  margin-bottom: 5px;
+  font-size: 22px;
+  color: #fff;
+}
+
+.reviews-text {
+  font-size: 18px;
 }

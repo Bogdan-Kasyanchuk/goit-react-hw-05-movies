@@ -73,7 +73,7 @@ const Reviews = () => {
           onClick={getLoadMore}
         />
       )}
-      {reviews.length > 10 && (
+      {reviews.length > 5 && (
         <Button name={'To UP'} nameClass="up-button" onClick={scrollTop} />
       )}
     </>

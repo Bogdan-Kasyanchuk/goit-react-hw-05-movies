@@ -7,18 +7,19 @@ const Navigation = () => {
       <ul className={styles['navigation-list']}>
         <li className={styles['navigation-item']}>
           <NavLink
-            className={styles['navigation-link']}
-            activeClassName={styles.active}
+            exact
             to="/"
+            className={styles['navigation-link']}
+            activeClassName={styles['navigation-link-active']}
           >
             Home
           </NavLink>
         </li>
         <li className={styles['navigation-item']}>
           <NavLink
-            className={styles['navigation-link']}
-            activeClassName={styles.active}
             to="/movies"
+            className={styles['navigation-link']}
+            activeClassName={styles['navigation-link-active']}
           >
             Movies
           </NavLink>
@@ -29,5 +30,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-// className={`${styles.button} ${styles[nameClass]}`}

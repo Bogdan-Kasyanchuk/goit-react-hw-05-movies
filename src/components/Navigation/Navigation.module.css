@@ -1,11 +1,12 @@
 .navigation {
   padding-top: 25px;
-  padding-bottom: 30px;
+  padding-bottom: 25px;
   background-image: linear-gradient(
     90deg,
     rgba(0, 0, 0, 0.6) 40%,
     rgba(24, 129, 158, 0.2) 100%
   );
+  border-bottom: 1px solid #fff;
 }
 
 .navigation-list {
@@ -31,23 +32,23 @@
   color: #08587d;
 }
 
-.active {
+.navigation-link-active {
   position: relative;
   color: #18819e;
 }
 
-.active::after {
+.navigation-link-active::after {
   content: '';
   position: absolute;
   bottom: 7px;
   left: 0;
   width: 100%;
   height: 3px;
-  background-color: #18819e;
   border-radius: 2px;
+  background-color: #18819e;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.active:hover:after {
+.navigation-link-active:hover:after {
   background-color: #08587d;
 }

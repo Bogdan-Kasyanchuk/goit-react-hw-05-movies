@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
 import MovieCard from 'components/MovieCard';
 import Toastify from 'components/Toastify';
 import Button from 'components/Button';
@@ -16,9 +15,6 @@ const Status = {
 };
 
 const HomePage = () => {
-  // const location = useLocation();
-  // const currentPage = new URLSearchParams(location.search).get('page') ?? 1;
-
   const [movieTrending, setMovieTrending] = useState([]);
   const [status, setStatus] = useState(null);
   const [page, setPage] = useState(1);

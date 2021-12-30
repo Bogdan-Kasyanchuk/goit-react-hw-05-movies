@@ -1,6 +1,49 @@
-.image-finder {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px;
+.cast-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #18819e;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.cast-wrapper-img {
+  width: 100%;
+  height: 350px;
+}
+
+.cast-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.cast-description {
+  flex-grow: 1;
+  padding: 5px 10px;
+  color: #fff;
+  line-height: 1.2;
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(24, 129, 158, 0.2) 100%
+  );
+}
+
+.cast-title {
+  margin-bottom: 5px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.cast-text {
+  font-size: 20px;
+}
+
+.cast-text:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.cast-text > span {
+  color: #18819e;
 }

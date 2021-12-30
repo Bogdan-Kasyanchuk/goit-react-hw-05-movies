@@ -3,7 +3,7 @@ import { Slide, toast } from 'react-toastify';
 
 const Toastify = (type, nameToastify) =>
   toast(nameToastify, {
-    position: 'top-center',
+    position: 'top-right',
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,

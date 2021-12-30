@@ -15,19 +15,21 @@ const MovieCard = ({ element, url }) => {
           state: { from: location },
         }}
       >
-        <img
-          className={styles['movie-img']}
-          src={
-            element.poster_path
-              ? `https://image.tmdb.org/t/p/w500${element.poster_path}`
-              : PosterNotAvailable
-          }
-          alt={
-            element.title || element.original_title
-              ? element.title || element.original_title
-              : element.name || element.original_name
-          }
-        />
+        <div className={styles['movie-wrapper-img']}>
+          <img
+            className={styles['movie-img']}
+            src={
+              element.poster_path
+                ? `https://image.tmdb.org/t/p/w500${element.poster_path}`
+                : PosterNotAvailable
+            }
+            alt={
+              element.title || element.original_title
+                ? element.title || element.original_title
+                : element.name || element.original_name
+            }
+          />
+        </div>
         <div className={styles['movie-description']}>
           <p className={styles['movie-title']}>
             {element.title || element.original_title

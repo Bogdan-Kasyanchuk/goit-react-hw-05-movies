@@ -19,8 +19,8 @@ const MovieDetailsPage = lazy(() =>
 function App() {
   return (
     <>
-      <Navigation />
       <Container>
+        <Navigation />
         <Suspense fallback={<Loading />}>
           <Switch>
             <Route exact path="/" component={HomePage} />

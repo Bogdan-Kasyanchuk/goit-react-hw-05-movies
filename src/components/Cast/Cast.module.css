@@ -1,6 +1,31 @@
-.image-finder {
+.cast-title {
+  padding-left: 200px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.cast-list {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 18px;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+@media screen and (max-width: 1650px) {
+  .cast-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .cast-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .cast-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

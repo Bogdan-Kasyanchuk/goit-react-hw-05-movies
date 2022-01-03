@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import MovieCard from 'components/MovieCard';
 import Toastify from 'components/Toastify';
 import Button from 'components/Button';
@@ -15,9 +16,12 @@ const Status = {
 };
 
 const HomePage = () => {
+  const history = useHistory();
+  const location = useLocation();
+  const currentPage = new URLSearchParams(location.search).get('page') ?? 1;
   const [movieTrending, setMovieTrending] = useState([]);
   const [status, setStatus] = useState(null);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(currentPage);
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
@@ -45,11 +49,17 @@ const HomePage = () => {
       if (page >= 2) scrollBottom();
     }
     fetchMovie();
+    if (page === 1) pushToHistory(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
+
+  const pushToHistory = value =>
+    history.push({ ...location, search: `page=${value}` });
 
   const getLoadMore = () => {
     scrollPosition();
-    setPage(prevState => prevState + 1);
+    setPage(prevState => Number(prevState) + 1);
+    pushToHistory(Number(page) + 1);
   };
 
   return (

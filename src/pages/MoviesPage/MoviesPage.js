@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 import Loading from 'components/Loading';
 import MovieCard from 'components/MovieCard';
 import NotFound from 'components/NotFound';
@@ -18,10 +18,15 @@ const Status = {
 };
 
 const MoviesPage = () => {
+  const history = useHistory();
+  const location = useLocation();
+  const currentSearchQuery =
+    new URLSearchParams(location.search).get('query') ?? '';
+  const currentPage = new URLSearchParams(location.search).get('page') ?? 1;
   const [movie, setMovie] = useState([]);
   const [status, setStatus] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [page, setPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState(currentSearchQuery);
+  const [page, setPage] = useState(currentPage);
   const [totalPages, setTotalPages] = useState(0);
   const { url } = useRouteMatch();
 
@@ -48,7 +53,15 @@ const MoviesPage = () => {
       if (page >= 2) scrollBottom();
     }
     fetchMovie();
+    if (page === 1) pushToHistory(searchQuery, page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, page]);
+
+  const pushToHistory = (query, value) =>
+    history.push({
+      ...location,
+      search: `query=${query}&page=${value}`,
+    });
 
   const handleFormSubmit = query => {
     if (query !== searchQuery) {
@@ -60,7 +73,8 @@ const MoviesPage = () => {
 
   const getLoadMore = () => {
     scrollPosition();
-    setPage(prevState => prevState + 1);
+    setPage(prevState => Number(prevState) + 1);
+    pushToHistory(searchQuery, Number(page) + 1);
   };
 
   return (

@@ -147,7 +147,10 @@ const MovieDetailsPage = () => {
                   <NavLink
                     className={styles['add-inform-link']}
                     activeClassName={styles['add-inform-link-active']}
-                    to={`${url}/cast`}
+                    to={{
+                      pathname: `${url}/cast`,
+                      state: { from: location },
+                    }}
                   >
                     Cast
                   </NavLink>
@@ -156,7 +159,10 @@ const MovieDetailsPage = () => {
                   <NavLink
                     className={styles['add-inform-link']}
                     activeClassName={styles['add-inform-link-active']}
-                    to={`${url}/reviews`}
+                    to={{
+                      pathname: `${url}/reviews`,
+                      state: { from: location },
+                    }}
                   >
                     Reviews
                   </NavLink>

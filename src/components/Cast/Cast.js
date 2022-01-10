@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from 'components/Loading';
-import Toastify from 'components/Toastify';
+import toastify from 'helpers/toastify';
 import CastItem from 'components/CastItem';
 import Button from 'components/Button';
 import { getCredits } from 'apiServices/movieAPI';
@@ -26,7 +26,7 @@ const Cast = () => {
       .then(data => {
         if (!data.cast.length) {
           setStatus(NOTFOUND);
-          Toastify('warning', "We don't have any reviews for this movie!");
+          toastify('warning', "We don't have any reviews for this movie!");
         } else {
           setCast(data.cast);
           setStatus(RESOLVED);
@@ -34,7 +34,7 @@ const Cast = () => {
       })
       .catch(error => {
         setStatus(NOTFOUND);
-        Toastify('error', `${error}`);
+        toastify('error', `${error}`);
       });
   }, [movieId]);
 

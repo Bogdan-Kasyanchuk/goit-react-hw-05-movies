@@ -4,7 +4,7 @@ import Loading from 'components/Loading';
 import MovieCard from 'components/MovieCard';
 import NotFound from 'components/NotFound';
 import SearchBar from 'components/SearchBar';
-import Toastify from 'components/Toastify';
+import toastify from 'helpers/toastify';
 import Button from 'components/Button';
 import { getMovie } from 'apiServices/movieAPI';
 import scrollTop from 'helpers/scrollTop';
@@ -39,7 +39,7 @@ const MoviesPage = () => {
         .then(data => {
           if (!data.results.length) {
             setStatus(NOTFOUND);
-            Toastify('warning', 'Sorry, there are no movies!');
+            toastify('warning', 'Sorry, there are no movies!');
           } else {
             setTotalPages(data.total_pages);
             setMovie(movieTrending => [...movieTrending, ...data.results]);
@@ -48,7 +48,7 @@ const MoviesPage = () => {
         })
         .catch(error => {
           setStatus(NOTFOUND);
-          Toastify('error', `${error}`);
+          toastify('error', `${error}`);
         });
       if (page >= 2) scrollBottom();
     }

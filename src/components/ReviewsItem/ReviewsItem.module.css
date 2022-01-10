@@ -1,14 +1,21 @@
+.reviews-item {
+  display: flex;
+}
+
 .reviews-item:not(:last-child) {
   margin-bottom: 20px;
   padding-bottom: 5px;
   border-bottom: 1px solid #fff;
 }
 
+.reviews-wrapper {
+  margin-right: 30px;
+}
+
 .reviews-wrapper-img {
-  float: left;
-  margin-right: 10px;
+  margin-bottom: 10px;
   width: 100px;
-  height: 100%;
+  height: auto;
 }
 
 .reviews-img {

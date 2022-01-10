@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import MovieCard from 'components/MovieCard';
-import Toastify from 'components/Toastify';
+import toastify from 'helpers/toastify';
 import Button from 'components/Button';
 import Loading from 'components/Loading';
 import { getTrending } from 'apiServices/movieAPI';
@@ -32,7 +32,7 @@ const HomePage = () => {
         .then(data => {
           if (!data.results.length) {
             setStatus(NOTFOUND);
-            Toastify('warning', 'Sorry, there are no trending movies!');
+            toastify('warning', 'Sorry, there are no trending movies!');
           } else {
             setTotalPages(data.total_pages);
             setMovieTrending(movieTrending => [
@@ -44,7 +44,7 @@ const HomePage = () => {
         })
         .catch(error => {
           setStatus(NOTFOUND);
-          Toastify('error', `${error}`);
+          toastify('error', `${error}`);
         });
       if (page >= 2) scrollBottom();
     }

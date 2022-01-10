@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy } from 'react';
+import { useState, useEffect, lazy, useRef } from 'react';
 import {
   Route,
   useParams,
@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import Loading from 'components/Loading';
 import NotFound from 'components/NotFound';
-import Toastify from 'components/Toastify';
+import toastify from 'helpers/toastify';
 import PosterNotAvailable from '../../images/poster-not-available.jpg';
 import Button from 'components/Button';
 import { getMovieInform } from 'apiServices/movieAPI';
@@ -35,6 +35,7 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieInform, setMovieInform] = useState({});
   const [status, setStatus] = useState(null);
+  const refLocation = useRef(location);
 
   useEffect(() => {
     const { PENDING, RESOLVED, NOTFOUND } = Status;
@@ -43,7 +44,7 @@ const MovieDetailsPage = () => {
       .then(data => {
         if (Object.keys(data).length === 0) {
           setStatus(NOTFOUND);
-          Toastify('warning', 'Sorry, there are no movies!');
+          toastify('warning', 'Sorry, there are no movies!');
         } else {
           setMovieInform(data);
           setStatus(RESOLVED);
@@ -51,12 +52,18 @@ const MovieDetailsPage = () => {
       })
       .catch(error => {
         setStatus(NOTFOUND);
-        Toastify('error', `${error}`);
+        toastify('error', `${error}`);
       });
   }, [movieId]);
 
   const onGoBack = () => {
-    history.push(location?.state?.from ?? '/movies');
+    if (!refLocation.current.state) return history.push('/movies');
+    const getStateFrom = refLocation.current.state.from;
+    history.push(
+      getStateFrom.search
+        ? getStateFrom.pathname + getStateFrom.search
+        : getStateFrom.pathname,
+    );
   };
 
   return (

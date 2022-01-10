@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
 import { Slide, toast } from 'react-toastify';
 
-const Toastify = (type, nameToastify) =>
+const toastify = (type, nameToastify) =>
   toast(nameToastify, {
     position: 'top-right',
     autoClose: 3000,
@@ -12,9 +11,4 @@ const Toastify = (type, nameToastify) =>
     type: type,
   });
 
-Toastify.propTypes = {
-  type: PropTypes.string.isRequired,
-  nameToastify: PropTypes.string.isRequired,
-};
-
-export default Toastify;
+export default toastify;

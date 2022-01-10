@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from 'components/Loading';
-import Toastify from 'components/Toastify';
+import toastify from 'helpers/toastify';
 import ReviewsItem from 'components/ReviewsItem';
 import Button from 'components/Button';
 import { getReviews } from 'apiServices/movieAPI';
@@ -30,7 +30,7 @@ const Reviews = () => {
         .then(data => {
           if (!data.results.length) {
             setStatus(NOTFOUND);
-            Toastify('warning', "We don't have any reviews for this movie!");
+            toastify('warning', "We don't have any reviews for this movie!");
           } else {
             setTotalPages(data.total_pages);
             setReviews(reviews => [...reviews, ...data.results]);
@@ -39,7 +39,7 @@ const Reviews = () => {
         })
         .catch(error => {
           setStatus(NOTFOUND);
-          Toastify('error', `${error}`);
+          toastify('error', `${error}`);
         });
       if (page >= 2) scrollBottom();
     }

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { ImSearch } from 'react-icons/im';
-import Toastify from 'components/Toastify';
+import toastify from 'helpers/toastify';
 import styles from './SearchBar.module.css';
 
 const SearchBar = ({ onSubmit }) => {
@@ -14,7 +14,7 @@ const SearchBar = ({ onSubmit }) => {
   const handleSubmit = event => {
     event.preventDefault();
     if (searchQuery.trim() === '') {
-      Toastify('warning', 'Enter the name of the movie!');
+      toastify('warning', 'Enter the name of the movie!');
     } else {
       onSubmit(searchQuery.trim());
       setSearchQuery('');
